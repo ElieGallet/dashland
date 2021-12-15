@@ -1,18 +1,21 @@
 {
-  "name": "towerfall-scoring",
+  "name": "dashland",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "flow": "flow src",
-    "flow:install": "flow-typed install",
     "lint": "eslint src",
-    "format": "eslint src --fix",
+    "lint-fix": "eslint src --fix",
     "start": "node index.js",
     "test": "jest",
-    "test:coverage": "jest --coverage --collectCoverageFrom=src/**",
-    "test:watch": "jest --watch",
-    "validate": "npm run lint && npm run flow && npm run test"
+    "test-watch": "jest --watch",
+    "validate": "npm run lint && npm run test",
+    "build": "echo 'Not implemented'",
+    "test-docker": "echo 'Not implemented'",
+    "test-db": "echo 'Not implemented'",
+    "test-e2e": "echo 'Not implemented'",
+    "coverage": "echo 'Not implemented'",
+    "coverage-html": "echo 'Not implemented'"
   },
   "author": "",
   "license": "ISC",
@@ -28,12 +31,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "eslint": "^3.19.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-flowtype": "^2.34.0",
     "eslint-plugin-jest": "^20.0.3",
-    "eslint-plugin-prettier": "^2.1.2",
-    "flow-bin": "^0.47.0",
-    "jest": "^20.0.4",
-    "prettier": "^1.5.3"
+    "jest": "^20.0.4"
   }
 }

@@ -1,15 +1,8 @@
 {
-  "env": {
-    "jest/globals": true,
-    "node": true
+  "parserOptions": {
+    "ecmaVersion": 2017
   },
-  "extends": [
-    "plugin:flowtype/recommended",
-    "plugin:jest/recommended",
-    "prettier"
-  ],
-  "plugins": ["flowtype", "jest", "prettier"],
-  "rules": {
-    "prettier/prettier": "error"
+  "env": {
+    "es6": true
   }
 }
