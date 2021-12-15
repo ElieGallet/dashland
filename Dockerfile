@@ -1,5 +1,8 @@
 FROM node:8
 
+ENV TZ=Europe/Paris
+ENV PRODUCTION_MODE=true
+
 RUN apt-get update \
   && apt-get install -y libelf1 apt-transport-https \
   && rm -rf /var/lib/apt/lists/*
@@ -10,7 +13,6 @@ COPY package.json /app/
 RUN npm install --silent
 
 COPY . /app
-RUN npm run validate
 
 CMD npm start
 

@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dashland-claim
+spec:
+  storageClassName: dashland
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10G

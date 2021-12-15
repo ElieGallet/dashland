@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dashland-logs
+spec:
+  storageClassName: dashland
+  capacity:
+    storage: 10G
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: default
+    name: dashland-claim
+  gcePersistentDisk:
+    pdName: dashland-hd
+    fsType: ext4

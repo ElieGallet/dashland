@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashland
+  labels:
+    app: dashland
+  annotations:
+    nabu.k8s.oui.fr/inject: "true"
+    nabu.k8s.oui.fr/container: "dashland"
+    nabu.k8s.oui.fr/auto-configure: "all"
+    nabu.k8s.oui.fr/ingress-domain: "${SUBDOMAIN}dashland.${DOMAIN}"
+    nabu.k8s.oui.fr/listen-on: "8080"
+    nabu.k8s.oui.fr/ingress-path: "/"
+    nabu.k8s.oui.fr/website: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashland
+  template:
+    metadata:
+      labels:
+        app: dashland
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - dashland
+              topologyKey: kubernetes.io/hostname
+      containers:
+        - name: dashland
+          image: ${IMAGE_NAME}
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: dashland-logs
+              mountPath: /usr/app/src/logs/
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+          resources:
+            requests:
+              cpu: 25m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 512Mi
+      volumes:
+        - name: dashland-logs
+          persistentVolumeClaim:
+            claimName: dashland-claim
+            readOnly: false
