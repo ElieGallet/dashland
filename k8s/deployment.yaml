@@ -39,7 +39,7 @@ spec:
             - containerPort: 3000
           volumeMounts:
             - name: dashland-logs
-              mountPath: /usr/app/src/logs/
+              mountPath: /app/logs/
           readinessProbe:
             httpGet:
               path: /
