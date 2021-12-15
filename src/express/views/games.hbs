@@ -2,12 +2,12 @@
   <tr>
     <td colspan="4"></td>
   </tr>
-{{#each games}}
+  {{#each games}}
   <tr>
-    <td class="textLeft">{{dateUtc}}</td>
+    <td class="textLeft">{{localeDate}}</td>
     {{# each rankings }}
     <td class="textLeft">{{rank}}: <a href="/players/{{player}}">{{player}}</a></td>
     {{/each}}
   </tr>
-{{/each}}
+  {{/each}}
 </table>
