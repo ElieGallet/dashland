@@ -1,8 +1,5 @@
-<form method="POST" autocomplete="off" >
-  <table
-    class="textCenter textBig"
-    style="width: 80%; margin: auto;"
-  >
+<form method="POST" autocomplete="off">
+  <table class="textCenter textBig" style="width: 80%; margin: auto;">
     <datalist id="playerList">
       {{#each players}}
       <option value="{{this}}" />
@@ -11,22 +8,14 @@
     {{#each inputs}}
     <tr>
       <td>
-        <select
-          name="inputs[{{@index}}][ranking]"
-          tabindex="-1"
-        >
+        <select name="inputs[{{@index}}][ranking]" tabindex="-1">
           {{#each @root.positions}}
-            <option value="{{this}}" {{#eq this ../ranking}} selected{{/eq}}>{{this}}</option>
+          <option value="{{this}}" {{#eq this ../ranking}} selected{{/eq}}>{{this}}</option>
           {{/each}}
         </select>
       </td>
       <td>
-        <input
-          name="inputs[{{@index}}][player]"
-          placeholder="PLAYER NAME"
-          value="{{player}}"
-          list="playerList"
-        />
+        <input name="inputs[{{@index}}][player]" placeholder="PLAYER NAME" value="{{player}}" list="playerList" />
       </td>
     </tr>
     {{/each}}
@@ -34,16 +23,11 @@
       <td>
       </td>
       <td>
-        <input
-          type="password"
-          name="password"
-          placeholder="PASSWORD"
-          autocomplete="new-password"
-        />
+        <input type="hidden" name="password" placeholder="PASSWORD" autocomplete="new-password" />
       </td>
     </tr>
   </table>
-  <br/>
+  <br />
 
   <div class="textCenter">
     <button type="submit">
