@@ -36,7 +36,7 @@ const altLeaderBoardCtrl = (req /*: Request */, res /*: Response */) => {
     .map((a, index) => ({
       player: a.player,
       index: index + 1,
-      rating: Math.round(a.rating * 10000) / 100
+      rating: Math.round(a.rating * 10000) / 100 + " %"
     }));
 
   res.render("index.hbs", { scores });
