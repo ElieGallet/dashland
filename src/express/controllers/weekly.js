@@ -8,13 +8,13 @@ import type { Game } from '../../types';
 
 const { computeRatingsFromRankings } = require("../../helpers/elo.js");
 const {
-  buildBeginningOfDayDate,
+  buildBeginningOfMonthDate,
   buildBeginningOfWeekDate,
   isGameAfterDate
 } = require("../../helpers/date.js");
 const { createLeaderboardFromRatings } = require("./index.js");
 
-const dailyCtrl = buildController(buildBeginningOfDayDate());
+const monthlyCtrl = buildController(buildBeginningOfMonthDate());
 const weeklyCtrl = buildController(buildBeginningOfWeekDate());
 
 function buildController(date /*: Date */) {
@@ -34,6 +34,6 @@ function buildController(date /*: Date */) {
 }
 
 module.exports = {
-  dailyCtrl,
+  monthlyCtrl,
   weeklyCtrl
 };
