@@ -25,6 +25,7 @@ function buildController(date /*: Date */) {
 
     const rankings = games
       .filter(isGameAfterDate(date))
+      .sort((g1, g2) => g1.date.localeCompare(g2.date))
       .map(game => game.rankings);
     const ratings = computeRatingsFromRankings(rankings);
 
