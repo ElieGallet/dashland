@@ -18,7 +18,7 @@ body {
   font-family: "Archer", "Arial";
   text-transform: uppercase;
   color: #fff;
-  font-size: 0.875em;
+  font-size: 28px;
 }
 
 h1 a {
@@ -76,11 +76,16 @@ h1 a {
 
 .card {
   margin: 40px;
-  padding: 20px;
+  padding: 40px;
   background-color: rgba(0,0,0,0.8);
 }
 
+form {
+  margin-top: 30px;
+}
+
 table {
+  margin-top: 40px;
   width: 100%;
   border-collapse: collapse;
 }
@@ -114,6 +119,9 @@ button {
   background: transparent;
   text-align: center;
   border-bottom: 2px solid #757575;
+}
+button[type=submit] {
+  margin-top: 20px;
 }
 
 input[type=submit], button[type=submit] {
@@ -157,6 +165,13 @@ option {
 .textJustify { text-align: justify; }
 .alignBottom { vertical-align: bottom; }
 
+.flexible {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-direction: column;
+}
 
 /* Zoom Zoom */
 
@@ -181,4 +196,20 @@ input[type=submit]:active, button:active, a:active, a:active {
   animation: zoomOut ease-in-out 200ms;
 }
 
+@media screen and (max-device-aspect-ratio: 1) {
+  .flexible {
+    flex-direction: row;
+  }
+  body {
+    font-size: 16px;
+  }
+}
 
+@media screen and (max-device-aspect-ratio: 1) {
+  .flexible {
+    flex-direction: column;
+  }
+  body {
+    font-size: 28px;
+  }
+}

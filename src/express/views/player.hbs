@@ -1,13 +1,11 @@
 <div class="textCenter">
   <span class="textHuge">{{player}}</span>
-  <br/>
+  <br />
   <span class="textBig">Rating: {{rating}}</span>
-  <br/>
+  <br />
   <span class="textBig">Games: {{total}}</span>
 </div>
-<br/>
-<br/>
-<br/>
+
 <table class="textCenter textBig">
   <tr>
     <td></a></td>
@@ -17,7 +15,7 @@
     <td><span>LOST</span></td>
     <td><span>LAST</span></td>
   </tr>
-{{#each results }}
+  {{#each results }}
   <tr>
     <td><a href="/players/{{opponent}}">{{ opponent }}</a></td>
     <td>
@@ -35,6 +33,5 @@
     </td>
     <td><span class="textSmall">{{ hours }}H</span></td>
   </tr>
-{{/each}}
-</table>
+  {{/each}}
 </table>
