@@ -15,7 +15,7 @@ html, body {
 }
 
 body {
-  font-family: "Archer", "Arial";
+  font-family: "Archer";
   text-transform: uppercase;
   color: #fff;
   font-size: 28px;
@@ -32,6 +32,7 @@ h1 a {
   left: 0; right: 0;
   z-index: -1;
   pointer-events: none;
+  background-color: #140614;
 }
 
 #main-background .contents {
@@ -44,7 +45,6 @@ h1 a {
 #main-background .padding-left,
 #main-background .padding-right {
   background-repeat: no-repeat;
-  background-color: #140614;
   background-size: auto 100vh;
   background-attachment: local;
 }
@@ -196,7 +196,7 @@ input[type=submit]:active, button:active, a:active, a:active {
   animation: zoomOut ease-in-out 200ms;
 }
 
-@media screen and (max-device-aspect-ratio: 1) {
+@media screen and (min-device-aspect-ratio: 1) {
   .flexible {
     flex-direction: row;
   }

@@ -3,7 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Dashland</title>
+  <link rel="preload" as="image" href="img/map-full.png" crossorigin="anonymous">
+  <link rel="preload" as="font" href="font/Archer.ttf" type="font/ttf" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 
@@ -13,7 +15,7 @@
     <div class="contents"></div>
     <div class="padding-right"></div>
   </div>
-  <div id="main-wrapper">
+  <div id="main-wrapper" style="visibility: hidden;">
     <div class="padding-left"></div>
     <div class="contents">
       <div class="card">
@@ -35,5 +37,10 @@
     <div class="padding-right"></div>
   </div>
 </body>
+<script>
+  window.addEventListener('load', (event) => {
+    document.getElementById('main-wrapper').style.visibility = 'visible';
+  });
+</script>
 
 </html>
