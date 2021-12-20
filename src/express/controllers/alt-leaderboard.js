@@ -13,25 +13,53 @@ const altLeaderBoardCtrl = (req /*: Request */, res /*: Response */) => {
   const state /*: State */ = store.getState();
   const games /*: Array<Game> */ = state.games;
 
-  const countAllGamesPerPlayer /*: { [Player]: number } */ = [].concat
-    .apply(
-      [],
-      games.map(game => game.rankings).map(rankings => Object.keys(rankings))
-    )
-    .reduce(reduceCount, {});
-
-  const firstRankPerPlayer /*: { [Player]: number } */ = games
+  const gamesPerPlayer /*: { [Player]: number } */ = games
     .map(game => game.rankings)
-    .map(rankings =>
-      Object.keys(rankings).find(player => rankings[player] == 1)
-    )
-    .reduce(reduceCount, {});
-
-  const scores /*: Array<Score> */ = Object.keys(countAllGamesPerPlayer)
-    .map(player => ({
-      player,
-      rating: firstRankPerPlayer[player] / countAllGamesPerPlayer[player] || 0
-    }))
+    .reduce((mergeObject /*: any */, currentGameRankings /*: ?Ranking */) => {
+      const players = Object.keys(currentGameRankings);
+      const numberOfPlayers = players.length;
+      const currentGamePlayers = Object.keys(currentGameRankings);
+      return currentGamePlayers.reduce((mergeObject /*: any */, currentPlayer /*: ?Player */) => {
+        if (mergeObject[currentPlayer] == undefined) {
+          mergeObject[currentPlayer] = {
+            totalGameCount: 0
+          };
+        }
+        if (mergeObject[currentPlayer][numberOfPlayers] === undefined) {
+          mergeObject[currentPlayer][numberOfPlayers] = {
+            gameCount: 0,
+            winCount: 0
+          };
+        }
+        if (currentGameRankings[currentPlayer] === 1) {
+          mergeObject[currentPlayer][numberOfPlayers].winCount += 1;
+        }
+        mergeObject[currentPlayer].totalGameCount += 1;
+        mergeObject[currentPlayer][numberOfPlayers].gameCount += 1;
+        return mergeObject;
+      }, mergeObject);
+    }, {})
+  const players = Object.keys(gamesPerPlayer);
+  const scores = players
+    .map(currentPlayer => {
+      const { totalGameCount, ...currentPlayerGames } = gamesPerPlayer[currentPlayer];
+      const distinctGameNumberOfPlayersOfCurrentPlayerGames = Object.keys(currentPlayerGames);
+      const currentPlayerScoresPerNumberOfPlayers = distinctGameNumberOfPlayersOfCurrentPlayerGames.map(currentNumberOfPlayers => {
+        const currentPlayerGamesForCurrentNumberOfPlayers = currentPlayerGames[currentNumberOfPlayers];
+        const winCountForCurrentTypeForCurrentPlayer = currentPlayerGamesForCurrentNumberOfPlayers.winCount;
+        const gameCountForCurrentTypeForCurrentPlayer = currentPlayerGamesForCurrentNumberOfPlayers.gameCount;
+        return {
+          ...currentPlayerGamesForCurrentNumberOfPlayers,
+          score: Math.pow(1 - (1 - (winCountForCurrentTypeForCurrentPlayer / gameCountForCurrentTypeForCurrentPlayer)), Math.log(2) / Math.log(1 / (1 - 1 / currentNumberOfPlayers)))
+        }
+      });
+      const gameCountForCurrentPlayer = gamesPerPlayer[currentPlayer].totalGameCount;
+      const currentPlayerTotalScore = currentPlayerScoresPerNumberOfPlayers.reduce((acc, item) => acc + item.score * item.gameCount / gameCountForCurrentPlayer, 0);
+      return {
+        player: currentPlayer,
+        rating: currentPlayerTotalScore
+      }
+    })
     .sort((a, b) => b.rating - a.rating)
     .map((a, index) => ({
       player: a.player,
