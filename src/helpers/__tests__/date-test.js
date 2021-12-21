@@ -6,7 +6,7 @@ const { mockRankings } = require("../../types/mocks.js");
 const { makeGameFromRankings } = require("../../types");
 
 const {
-  buildBeginningOfDayDate,
+  buildBeginningOfMonthDate,
   buildBeginningOfWeekDate,
   isGameAfterDate
 } = require("../date.js");
@@ -30,11 +30,11 @@ describe("isGameAfterDate()", () => {
   });
 });
 
-describe("buildBeginningOfDayDate()", () => {
-  it("returns the beginning of the day", () => {
+describe("buildBeginningOfMonthDate()", () => {
+  it("returns the beginning of the month", () => {
     moment.locale("fr");
     const date = new Date(2017, 6, 18, 15, 42); // 18 juillet 2017 15:42
-    expect(buildBeginningOfDayDate(date)).toEqual(new Date(2017, 6, 18, 0, 0));
+    expect(buildBeginningOfMonthDate(date)).toEqual(new Date(2017, 6, 1, 0, 0));
   });
 });
 

@@ -25,7 +25,7 @@ describe("player-test.js", () => {
         "1990-01-04"
       );
       expect(results).toEqual({
-        rating: 5,
+        rating: 50,
         results: [
           {
             elo: "0.5",

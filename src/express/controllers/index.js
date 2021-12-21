@@ -31,7 +31,7 @@ function createLeaderboardFromRatings(
     .map((a, index) => ({
       player: a.player,
       index: index + 1,
-      rating: Math.round(a.rating / 100)
+      rating: Math.round(a.rating / 10)
     }));
 }
 

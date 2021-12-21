@@ -15,7 +15,7 @@ function playerSerializer(
   ratings /*: { [Player]: ELORating } */,
   now /*: string */ = new Date().toISOString()
 ) {
-  const rating = Math.round(ratings[player] / 100);
+  const rating = Math.round(ratings[player] / 10);
   const time = new Date(now).getTime();
 
   const encounters = games
